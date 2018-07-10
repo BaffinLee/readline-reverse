@@ -1,0 +1,30 @@
+{
+  "name": "reverse-reader",
+  "version": "0.0.1",
+  "description": "file reverse reader",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "lint": "eslint src test"
+  },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "reverse",
+    "readline",
+    "tail"
+  ],
+  "bug": {
+    "url": "https://github.com/baffinlee/readline-reverse/issues"
+  },
+  "homepage": "https://github.com/baffinlee/readline-reverse",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:baffinlee/readline-reverse.git"
+  },
+  "author": "BaffinLee <baffinlee@gmail.com>",
+  "license": "MIT"
+}
