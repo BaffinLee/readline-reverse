@@ -1,13 +1,15 @@
 {
-  "name": "reverse-reader",
+  "name": "readline-reverse",
   "version": "0.0.1",
-  "description": "file reverse reader",
+  "description": "readline reverse",
   "main": "src/index.js",
   "engines": {
     "node": ">=8.0.0"
   },
   "scripts": {
-    "lint": "eslint src test"
+    "lint": "eslint src",
+    "test": "npm run lint && nyc mocha --require intelli-espower-loader",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "files": [
     "src"
@@ -26,5 +28,14 @@
     "url": "git@github.com:baffinlee/readline-reverse.git"
   },
   "author": "BaffinLee <baffinlee@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "codecov": "^3.0.4",
+    "eslint": "^5.1.0",
+    "fs-extra": "^6.0.1",
+    "intelli-espower-loader": "^1.0.1",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
+    "power-assert": "^1.6.0"
+  }
 }

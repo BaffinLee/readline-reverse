@@ -1,5 +1,7 @@
 .vscode/
 .idea/
+.tmp/
+.nyc_output/
 node_modules/
 package-lock.json
 yarn.lock
