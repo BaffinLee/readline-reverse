@@ -1,3 +1,6 @@
+/* eslint-env mocha */
+'use strict'
+
 const fse = require('fs-extra')
 const path = require('path')
 const assert = require('assert')
@@ -73,19 +76,19 @@ describe('open file', () => {
   })
 
   it('should get correct size and open', async () => {
-    const SIZE = Symbol.for('ReadlineReverse.size')
+    const BUFFER = Symbol.for('ReadlineReverse.buffer')
     const FD = Symbol.for('ReadlineReverse.fd')
 
     let reader = new ReadlineReverse()
     await fse.outputFile(tmpFile, 'ten bytes.')
     await reader.open(tmpFile)
-    assert(reader[SIZE] === 10)
+    assert(reader[BUFFER].length === 10)
     assert(reader[FD])
     await reader.close()
 
     reader = new ReadlineReverse({ bufferSize: 5 })
     await reader.open(tmpFile)
-    assert(reader[SIZE] === 5)
+    assert(reader[BUFFER].length === 5)
     await reader.close()
 
     await fse.remove(tmpPath)
@@ -123,15 +126,16 @@ describe('read line', () => {
     let lines = []
     lines = await reader.read()
     assert(lines[0] === '')
-    assert(lines[1] === 'line 6')
+    lines = await reader.read()
+    assert(lines[0] === 'line 6')
   })
 
   it('should get n lines correctly', async () => {
     const lines = await reader.read(6)
     assert(lines.length === 6)
-    assert(lines[0] === '')
-    assert(lines[1] === 'line 2')
-    assert(lines[2] === 'line 3')
+    assert(lines[0] === 'line 2')
+    assert(lines[4] === 'line 6')
+    assert(lines[5] === '')
   })
 
   it('should get all lines correctly', async () => {
@@ -148,7 +152,7 @@ describe('test config', async () => {
   it('should read file by bufferSize', async () => {
     const str = '\nline 1\nline 2'
     await fse.outputFile(tmpFile, str)
-    reader = new ReadlineReverse({ bufferSize: 3 })
+    const reader = new ReadlineReverse({ bufferSize: 3 })
     await reader.open(tmpFile)
     let lines = await reader.read()
     assert(lines[0] === 'line 2')
@@ -161,7 +165,7 @@ describe('test config', async () => {
 
     let str = '\nline 1\nline 2\n'
     await fse.outputFile(tmpFile, str)
-    reader = new ReadlineReverse({ separator: '\n' })
+    let reader = new ReadlineReverse({ separator: '\n' })
     await reader.open(tmpFile)
     lines = await reader.read(2)
     assert(lines[0] === 'line 2')
@@ -210,4 +214,3 @@ describe('close file', () => {
     assert(reader[FD] === undefined)
   })
 })
-

@@ -7,7 +7,7 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "lint": "eslint src",
+    "lint": "eslint src test",
     "test": "npm run lint && nyc mocha --require intelli-espower-loader",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },

@@ -3,5 +3,6 @@
 .tmp/
 .nyc_output/
 node_modules/
+coverage.lcov
 package-lock.json
 yarn.lock
