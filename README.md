@@ -1,27 +1,30 @@
 # readline-reverse
 
-Readline reversely in nodejs.
+📑 Readline reversely in nodejs.
 
 [![appveyor](https://ci.appveyor.com/api/projects/status/github/BaffinLee/readline-reverse?branch=master&svg=true)](https://ci.appveyor.com/project/BaffinLee/readline-reverse)
 [![travis-ci](https://travis-ci.org/BaffinLee/readline-reverse.svg?branch=master)](https://travis-ci.org/BaffinLee/readline-reverse)
-[![codecov](https://codecov.io/gh/BaffinLee/readline-reverse/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/objectable)
+[![codecov](https://codecov.io/gh/BaffinLee/readline-reverse/branch/master/graph/badge.svg)](https://codecov.io/gh/baffinlee/readline-reverse)
 [![npm](https://img.shields.io/npm/v/readline-reverse.svg)](https://www.npmjs.com/package/readline-reverse)
 [![GitHub release](https://img.shields.io/github/release/BaffinLee/readline-reverse.svg)](https://github.com/BaffinLee/readline-reverse/releases)
 [![GitHub issues](https://img.shields.io/github/issues/BaffinLee/readline-reverse.svg)](https://github.com/BaffinLee/readline-reverse/issues)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/baffinlee/readline-reverse)
+[![license](https://img.shields.io/github/license/baffinlee/readline-reverse.svg)](https://github.com/baffinlee/readline-reverse)
 
 ## Feature
 
-- Easy to use.
-- Clear source code.
-- Test coverage: 100%.
-- Optimized.
+- ✔︎ Easy to use.
+- ✔︎ Clear source code.
+- ✔︎ Test coverage: 100%.
+- ✔︎ Options for optimized.
+- ✔︎ Options for security.
 
 ## Install
 
 ```bash
 npm install readline-reverse
 ```
+
+Rrequire Node.js >= 8.0.0
 
 ## How to use
 
@@ -47,7 +50,8 @@ await reader.close()
 | `options.flags` | `string` | `r` | open file with flag |
 | `options.separator` | `string` | `\n` | line separator |
 | `options.encoding` | `string` | `utf8` | read file with encoding |
-| `options.bufferSize` | `string` | `4096` | read buffer size, better be the average size of one line |
+| `options.bufferSize` | `string` | `4096` | read buffer size, better bigger than average size of one line |
+| `options.maxLineLength` | `number` | `0` | max line length, will throw error when exceed, 0 represent unlimited |
 
 ### open(filepath)
 
