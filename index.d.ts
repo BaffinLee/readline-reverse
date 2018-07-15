@@ -1,4 +1,4 @@
-declare module 'ReadlineReverse' {
+declare module 'readline-reverse' {
   interface options {
     flags?: string;
     separator?: string;
