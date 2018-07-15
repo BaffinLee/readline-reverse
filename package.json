@@ -1,6 +1,6 @@
 {
   "name": "readline-reverse",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "readline reverse",
   "main": "src/index.js",
   "engines": {
