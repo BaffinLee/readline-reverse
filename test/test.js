@@ -160,6 +160,38 @@ describe('test config', async () => {
     await fse.remove(tmpPath)
   })
 
+  it('should throw error when max line length exceed, case 1', async () => {
+    const str = 'ten bytes.'
+    await fse.outputFile(tmpFile, str)
+    const reader = new ReadlineReverse({ maxLineLength: 9 })
+    await reader.open(tmpFile)
+    let err = null
+    try {
+      await reader.read()
+    } catch (e) {
+      err = e
+    }
+    assert(err instanceof Error && err.message === 'max line length exceed')
+    await reader.close()
+    await fse.remove(tmpPath)
+  })
+
+  it('should throw error when max line length exceed, case 2', async () => {
+    const str = 'ten bytes.\nten bytes.'
+    await fse.outputFile(tmpFile, str)
+    const reader = new ReadlineReverse({ maxLineLength: 9 })
+    await reader.open(tmpFile)
+    let err = null
+    try {
+      await reader.read()
+    } catch (e) {
+      err = e
+    }
+    assert(err instanceof Error && err.message === 'max line length exceed')
+    await reader.close()
+    await fse.remove(tmpPath)
+  })
+
   it('should read file by separator', async () => {
     let lines = ''
 
