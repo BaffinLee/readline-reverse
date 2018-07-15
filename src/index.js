@@ -21,7 +21,8 @@ const defaultOptions = {
   flags: 'r',
   separator: '\n',
   encoding: 'utf8',
-  bufferSize: 4096
+  bufferSize: 4096,
+  maxLineLength: 0
 }
 
 module.exports = class ReadlineReverse {
@@ -31,7 +32,8 @@ module.exports = class ReadlineReverse {
    * @param {string} [options.flags = 'r'] open file flag
    * @param {string} [options.separator = '\n'] line separator
    * @param {string} [options.encoding = 'utf8'] file encoding
-   * @param {number} [options.bufferSize = 4096] read buffer size, better be the average size of one line
+   * @param {number} [options.bufferSize = 4096] read buffer size, better bigger than average size of one line
+   * @param {number} [options.maxLineLength = 0] max line length, will throw error when exceed, 0 represent unlimited
    * @throws {AssertionError} need separator
    * @throws {AssertionError} need encoding
    */
@@ -76,11 +78,13 @@ module.exports = class ReadlineReverse {
 
   /**
    * read line
+   * @throws {Error} max line length exceed
    * @returns {string|boolean} line string or false if nothing to read
    * @private
    */
   async [READ_LINE] () {
     let index = 0
+    let length = 0
     let tmp = false
     let res = false
     /* eslint-disable no-constant-condition */
@@ -92,9 +96,13 @@ module.exports = class ReadlineReverse {
       if (res === false) res = ''
       index = this[BUFFER].lastIndexOf(this.options.separator, this[BUFFER_POSITION])
       if (index === -1) {
-        res = this[BUFFER].toString(this.options.encoding) + res
+        length += this[BUFFER_POSITION] + 1
+        if (this.options.maxLineLength > 0 && length > this.options.maxLineLength) throw new Error('max line length exceed')
+        res = this[BUFFER].toString(this.options.encoding, 0, this[BUFFER_POSITION] + 1) + res
         this[BUFFER_POSITION] = -1
       } else {
+        length += this[BUFFER_POSITION] + 1 - index - this.options.separator.length
+        if (this.options.maxLineLength > 0 && length > this.options.maxLineLength) throw new Error('max line length exceed')
         res = this[BUFFER].toString(this.options.encoding, index + this.options.separator.length, this[BUFFER_POSITION] + 1) + res
         this[BUFFER_POSITION] = index - 1
         // if there are more than one line and the first line is empty
