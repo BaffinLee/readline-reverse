@@ -6,7 +6,6 @@
 [![travis-ci](https://travis-ci.org/BaffinLee/readline-reverse.svg?branch=master)](https://travis-ci.org/BaffinLee/readline-reverse)
 [![codecov](https://codecov.io/gh/BaffinLee/readline-reverse/branch/master/graph/badge.svg)](https://codecov.io/gh/baffinlee/readline-reverse)
 [![npm](https://img.shields.io/npm/v/readline-reverse.svg)](https://www.npmjs.com/package/readline-reverse)
-[![GitHub release](https://img.shields.io/github/release/BaffinLee/readline-reverse.svg)](https://github.com/BaffinLee/readline-reverse/releases)
 [![GitHub issues](https://img.shields.io/github/issues/BaffinLee/readline-reverse.svg)](https://github.com/BaffinLee/readline-reverse/issues)
 [![license](https://img.shields.io/github/license/baffinlee/readline-reverse.svg)](https://github.com/baffinlee/readline-reverse)
 
@@ -15,8 +14,9 @@
 - ✔︎ Easy to use.
 - ✔︎ Clear source code.
 - ✔︎ Test coverage: 100%.
-- ✔︎ Options for optimized.
+- ✔︎ Options for optimize.
 - ✔︎ Options for security.
+- ✔︎ Supports typescript.
 
 ## Install
 

@@ -12,7 +12,8 @@
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "files": [
-    "src"
+    "src",
+    "index.d.ts"
   ],
   "keywords": [
     "reverse",
